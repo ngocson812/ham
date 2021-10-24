@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ung dung quan ly</title>
+</head>
+<body>
+<h1>Add New Product</h1>
+<input type="text" placeholder="new product" id="check">
+<input type="button" id="add" value="Add" onclick="AddProduct()">
+<h2>Display all product</h2>
+<table border="1px">
+    <tr>
+        <th colspan="3">Product name</th>
+    </tr>
+    <tbody id="list">
+    <tr>
+        <td></td>
+        <td><input type="button" onclick="editProduct(index)" value="edit"></td>
+        <td><input type="button" onclick="deleteProduct()" value="delete"></td>
+    </tr>
+    </tbody>
+
+</table>
+<script>
+    let product = ['samsung','iphone'];
+    function showProduct(){
+        let content='';
+        for (let i = 0; i < product.length; i++) {
+            content+=' <tr>\n' +
+                '        <td >'+product[i]+'</td>\n' +
+                '        <td style="color: midnightblue"><input type="button" onclick="editProduct('+i+')" value="edit"></td>\n' +
+                '        <td style="color: midnightblue"><input type="button" onclick="deleteProduct('+i+')" value="delete"></td>\n' +
+                '    </tr>'
+        }document.getElementById('list').innerHTML=content;
+    }showProduct()
+    function  AddProduct(){
+        let value = document.getElementById('check').value;
+        product.push(value);
+        document.getElementById('check').value=''
+        showProduct()
+    }
+    function editProduct(index){
+        let newEdit =prompt('',product[index]);
+        product[index]= newEdit;
+        showProduct();
+    }
+    function deleteProduct(index){
+        product.splice(index,1);
+        showProduct()
+    }
+</script>
+</body>
+</html>
